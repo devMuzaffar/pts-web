@@ -1,11 +1,23 @@
+"use client";
+import { ModalContext } from "@/app/context/modalContext";
+import { useContext } from "react";
+
 const SignIn = ({ isNewUser, setIsNewUser }) => {
+  const { setIsModalOpen } = useContext(ModalContext);
+
   const changeForm = (e) => {
     e.preventDefault();
     setIsNewUser(!isNewUser);
   };
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    window.open("/dashboard", "_blank");
+    setIsModalOpen(false);
+  };
+
   return (
-    <form className="flex flex-col gap-3 w-full py-2">
+    <form onSubmit={handleSignIn} className="flex flex-col gap-3 w-full py-2">
       <input
         className="p-2 border-2 outline-none rounded-md px-5"
         type="text"
@@ -16,7 +28,10 @@ const SignIn = ({ isNewUser, setIsNewUser }) => {
         type="password"
         placeholder="Password"
       />
-      <button className="bg-primary-blue text-lg font-medium text-white rounded-md py-2">
+      <button
+        type="submit"
+        className="bg-primary-blue text-lg font-medium text-white rounded-md py-2"
+      >
         Sign In
       </button>
       <div className="flex flex-col text-sm text-center gap-2">

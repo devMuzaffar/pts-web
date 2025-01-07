@@ -12,8 +12,8 @@ const SidebarBody = () => {
   // Selected Index State
   // Default is 0, if localStorage has value then currentIndex
   const [selectedIndex, setSelectedIndex] = useState(() => {
-    const savedIndex = localStorage.getItem("current-index");
-    return savedIndex ? +savedIndex : 0;
+    const savedIndex = +localStorage.getItem("current-index");
+    return savedIndex;
   });
 
   // Custom Hook to containing useful methods

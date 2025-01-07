@@ -15,10 +15,9 @@ const Footer = () => {
     <div>
       {/* Footer */}
       <div className="py-8 px-2 sm:px-8 md:px-16 bg-green-100 shadow-sm border-b-2 justify-center grid gap-5 sm:grid-cols-2 md:grid-cols-4 md:py-24">
-        
         {/* Social section */}
         <div className="flex flex-col gap-2">
-          <img className="w-32 py-1" src="./assets/logo-green.png" alt="" />
+          <img className="w-32 py-1" src="/logo-footer.png" alt="" />
           <p className="text-sm text-slate-500 w-full md:w-64">
             Practical-based learning platform to enhance skills
           </p>

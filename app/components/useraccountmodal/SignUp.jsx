@@ -1,8 +1,13 @@
 const SignUp = ({ isNewUser, setIsNewUser }) => {
   const goBack = () => setIsNewUser(false);
 
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    console.log("Sign up");
+  };
+
   return (
-    <form className="flex flex-col gap-3 w-full py-6">
+    <form onSubmit={handleSignUp} className="flex flex-col gap-3 w-full py-6">
       <input
         className="p-2 border-2 outline-none rounded-md px-5"
         type="email"
@@ -18,7 +23,10 @@ const SignUp = ({ isNewUser, setIsNewUser }) => {
         type="password"
         placeholder="Password"
       />
-      <button className="bg-primary-blue text-lg font-medium text-white rounded-md py-2">
+      <button
+        type="submit"
+        className="bg-primary-blue text-lg font-medium text-white rounded-md py-2"
+      >
         Create New Account
       </button>
       <button

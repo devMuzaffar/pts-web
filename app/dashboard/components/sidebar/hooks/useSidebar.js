@@ -3,7 +3,7 @@ import {
   normalizedText,
 } from "@/dashboard/utils/helpers/stringUtils";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import menuList from "@/dashboard/list/menuList";
 
 const useSidebar = ({
@@ -56,7 +56,6 @@ const useSidebar = ({
   const handleNavigation = (index, text, dropdownList) => {
     // Sets Index
     setSelectedIndex(index);
-    localStorage.setItem("current-index", index);
 
     // Route to specific path only if has no dropdown List
     const routeText = formatToPath(text);
@@ -65,6 +64,8 @@ const useSidebar = ({
     if (!dropdownList) {
       if (routeText.includes("home")) {
         router.push("/dashboard/");
+      } else if (routeText.includes("log")) {
+        window.close(); // Goes back to Root
       } else {
         router.push(routePath);
       }

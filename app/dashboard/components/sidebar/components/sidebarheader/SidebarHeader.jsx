@@ -1,3 +1,4 @@
+"use client";
 import { useContext } from "react";
 import MenuIcon from "../menuicon/MenuIcon";
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
@@ -15,11 +16,11 @@ const SidebarHeader = () => {
     <div className="flex flex-shrink-0 items-center justify-center gap-6 pt-8 pb-4 overflow-hidden">
       {/* Chaajao Logo */}
       <div className="flex items-center gap-3">
-        <img className="w-8" src="/dashboard/logo.png" alt="" />
+        <img className="w-8" src="/icon.png" alt="" />
         {isSidebarHover && (
           <img
             className="w-32 h-8 object-contain"
-            src="/dashboard/logo-text.png"
+            src="/logo-text.png"
             alt=""
           />
         )}

@@ -8,7 +8,7 @@ const Loading = ({ isMain }) => {
   return !!isMain ? (
     <div className="w-full h-full bg-gray-950 flex flex-col items-center justify-center gap-5">
       <ThemeProvider theme={uiStyle}>
-        <img src="/dashboard/logo.png" />
+        <img src="/icon.png" />
         <CircularProgress color="secondary" />
       </ThemeProvider>
     </div>

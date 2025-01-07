@@ -7,7 +7,9 @@ const UserAccountModal = () => {
   const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
 
   // Closes Modal on Clicking Background
-  const hideModal = () => setIsModalOpen(!isModalOpen);
+  const hideModal = () => {
+    setIsModalOpen(!isModalOpen)
+  };
 
   //  Determines the visibility of the modal
   const modalVisibleClass = isModalOpen ? "flex" : "hidden";

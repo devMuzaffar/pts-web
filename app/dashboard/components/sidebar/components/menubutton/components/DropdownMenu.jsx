@@ -8,46 +8,53 @@ import menuList from "../../../../../list/menuList";
 
 const DropdownMenu = ({ isSelected, dropdownCondition }) => {
   const router = useRouter();
-  const pathName = usePathname();
+  const pathname = usePathname();
   const { dropdownList } = useContext(SidebarContext);
+  const [selectedIndexdd, setSelectedIndexdd] = useState(null);
 
-  // Selected Index for Dropdown Item
-  const [selectedIndex, setSelectedIndex] = useState(null);
-
-  // 
-  // useEffect() - de-highlights dropdown selected button upon changing routes
-  // Persist highlighted button upon refreshing page
-  // 
+  //
+  // useEffect()
+  // Persist highlighted button upon refreshing page || Clicking on another dropdown
+  // de-highlights dropdown selected button upon changing routes
+  //
   useEffect(() => {
-    const currentPath = String(normalizedText(pathName)).replace("Dashboard ", "");
+    const currentPath = String(normalizedText(pathname)).replace(
+      "Dashboard ",
+      ""
+    );
 
     menuList.forEach(({ dropdown }) => {
-      // If dropdown key exist?
-      if (dropdown) {
-        if (dropdownList.includes(currentPath)) {
-          const matchedIndex = dropdownList.findIndex(
-            (text) => text === currentPath
-          );
-          isSelected &&
-            setSelectedIndex(matchedIndex !== -1 ? matchedIndex : null);
+      if (isSelected) {
+        localStorage.setItem("current-index", null);
+        // If dropdown List exist?
+        if (dropdown) {
+          // If dropdown[i] === current pathname ?
+          if (dropdownList.includes(currentPath)) {
+            // find & return index number matching with pathname
+            const matchedIndex = dropdownList.findIndex(
+              (text) => text === currentPath
+            );
+            setSelectedIndexdd(matchedIndex);
+          }
         }
+      } else {
+        setSelectedIndexdd(null);
       }
     });
-  }, [dropdownList]);
+  }, [dropdownList, pathname, isSelected]);
 
   // Highlights button when selected
   const dropDownButtonCondition = (index) =>
-    selectedIndex === index
+    selectedIndexdd === index
       ? "border-[#e3a314] border-b-2"
       : "border-b-2 border-transparent";
 
   // Dropdown Button onClick Route
+  // Highlights text only when parent button is selected
+  // Also Remove spaces + lower case of Selected String for route
+  // Converted String will navigate to other page
   const selectDropdownItem = (item, index) => {
-    // Highlights text only when parent button is selected
-    isSelected ? setSelectedIndex(index) : setSelectedIndex(null);
-
-    // Remove space + lower case of Selected String for route
-    // Converted String will navigate to other page
+    setSelectedIndexdd(isSelected ? index : null);
     const routeText = `/dashboard/${item.replace(" ", "-").toLowerCase()}`;
     router.push(routeText);
   };
