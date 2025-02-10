@@ -1,4 +1,4 @@
-import bottomLinks from "@/dashboard/list/bottomLinks";
+import bottomLinks from "@/app/dashboard/(all)/list/bottomLinks";
 import QuickLinkButton from "../shared/QuickLinkButton";
 
 const BottomLinks = () => {

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ModalWrap from "./components/ModalWrap";
-import { createTheme } from "@mui/material/styles";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import uiStyle from "@/dashboard/styles/uiStyle";
 import BlockRight from "./components/BlockRight";
 import BlockLeft from "./components/BlockLeft";
@@ -49,7 +48,7 @@ const AddQuestion = ({ open, setOpen }) => {
       <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 bg-white flex flex-col overflow-y-scroll h-full w-full md:h-auto md:w-auto">
         <div className="flex flex-col gap-4 p-8">
           {/* Title Header */}
-          <Header setOpen={setOpen}/>
+          <Header setOpen={setOpen} />
 
           {/* Form field */}
           <ThemeProvider theme={formStyle}>

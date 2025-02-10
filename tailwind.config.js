@@ -1,4 +1,6 @@
-const { merge } = require("lodash");
+import { merge } from 'lodash';
+import { primary as primaryColor, secondary as secondaryColor } from './app/dashboard/config/colors';
+
 
 /** @type {import('tailwindcss').Config} */
 
@@ -29,8 +31,10 @@ const pageTheme = {
   },
 };
 
-const primary = "#02A6E5";
-const secondary = "#F29F05";
+// const primary = "#02A6E5";
+// const secondary = "#F29F05";
+const primary = primaryColor;
+const secondary = secondaryColor;
 
 const dashboardTheme = {
   extend: {

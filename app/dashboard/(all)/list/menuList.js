@@ -1,4 +1,4 @@
-let mode = true;
+let mode = false;
 let menuList;
 
 // If Admin ?

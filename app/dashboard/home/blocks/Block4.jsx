@@ -8,9 +8,9 @@ import "swiper/css";
 
 import SlidePrevButton from "./components/SlidePrevButton";
 import SlideNextButton from "./components/SlideNextButton";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import YoutubeCard from "./components/YoutubeCard";
-import YTLinksID from "@/dashboard/list/YTLinks";
+import YTLinksID from "@/app/dashboard/(all)/list/YTLinks";
 
 const swiperBreakpoints = {
   0: {
@@ -24,6 +24,8 @@ const swiperBreakpoints = {
 const Block4 = () => {
   // Ref hook for Swiper Navigation
   const swiperRef = useRef(null);
+  const [isStart, setIsStart] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   return (
     <div className={blockStyle}>
@@ -37,6 +39,10 @@ const Block4 = () => {
           breakpoints={swiperBreakpoints}
           spaceBetween={20}
           loop={false}
+          onSlideChange={(swiper) => {
+            setIsStart(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
         >
           {YTLinksID.map((id, index) => (
             <SwiperSlide key={index}>
@@ -47,16 +53,20 @@ const Block4 = () => {
 
         {swiperRef && (
           <div>
-            <SlidePrevButton
-              onClick={() => {
-                swiperRef.current.swiper.slideNext();
-              }}
-            />
-            <SlideNextButton
-              onClick={() => {
-                swiperRef.current.swiper.slidePrev();
-              }}
-            />
+            {isStart && (
+              <SlidePrevButton
+                onClick={() => {
+                  swiperRef.current.swiper.slideNext();
+                }}
+              />
+            )}
+            {isEnd && (
+              <SlideNextButton
+                onClick={() => {
+                  swiperRef.current.swiper.slidePrev();
+                }}
+              />
+            )}
           </div>
         )}
       </div>

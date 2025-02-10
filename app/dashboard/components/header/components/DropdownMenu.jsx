@@ -9,6 +9,7 @@ const DropdownMenu = ({
   list,
   className,
   anchor,
+  onClick,
 }) => {
   const handleClose = () => setAnchorEl(null);
 
@@ -34,7 +35,12 @@ const DropdownMenu = ({
     >
       {/* Item */}
       {list.map((item, index) => (
-        <MenuItem key={index} onClick={handleClose}>
+        <MenuItem key={index} onClick={() => {
+          if (onClick) {
+            onClick(item);
+          }
+          handleClose();
+        }}>
           {item.icon && (
             <ListItemIcon classes={{ root: "!text-gray-800" }}>
               {item.icon}

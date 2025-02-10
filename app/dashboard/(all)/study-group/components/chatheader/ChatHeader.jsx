@@ -5,6 +5,7 @@ import ThreeDotMenu from "../threedotmenu/ThreeDotMenu";
 import { MdSearch } from "react-icons/md";
 import MobileDrawer from "../bodyintro/components/MobileDrawer";
 import ProfileStatus from "./components/ProfileStatus";
+import Image from "next/image";
 
 const ChatHeader = () => {
   const [open, setOpen] = useState(false);
@@ -19,13 +20,14 @@ const ChatHeader = () => {
       {/* Profile & Three-dot Menu */}
       <div className="flex items-center justify-between">
         <div
-          className="w-10 relative cursor-pointer"
+          className="w-10 h-10 relative cursor-pointer"
           onClick={handleProfileMenu}
         >
-          <img
+          <Image
             className="rounded-full"
-            src="./assets/study-group/profile.jpg"
+            src="/dashboard/study-group/profile.jpg"
             alt=""
+            fill={true}
           />
           <GreenTick />
         </div>

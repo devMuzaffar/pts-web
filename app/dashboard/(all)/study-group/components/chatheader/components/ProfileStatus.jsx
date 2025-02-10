@@ -8,6 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import statusIcons from "../list/statusIcons";
 import { useState } from "react";
+import Image from "next/image";
 
 const ProfileStatus = ({ closeOnClick }) => {
   const [selectedStatus, setSelectedStatus] = useState("online");
@@ -27,11 +28,14 @@ const ProfileStatus = ({ closeOnClick }) => {
 
         {/* Profile Block */}
         <div className="flex flex-col items-center justify-center gap-5 h-full">
-          <img
-            className="w-24 rounded-full"
-            src="./assets/study-group/profile.jpg"
+          <div className="w-24 h-24 relative">
+          <Image
+            className="rounded-full"
+            src="/dashboard/study-group/profile.jpg"
             alt=""
+            fill={true}
           />
+          </div>
           <h3 className="text-white text-xl font-medium">John Doe</h3>
         </div>
       </div>

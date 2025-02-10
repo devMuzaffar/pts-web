@@ -4,7 +4,7 @@ import {
 } from "@/dashboard/utils/helpers/stringUtils";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
-import menuList from "@/dashboard/list/menuList";
+import menuList from "@/app/dashboard/(all)/list/menuList";
 
 const useSidebar = ({
   setDropdownList,

@@ -2,14 +2,19 @@
 
 import { Button as MuiButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import uiStyle from "@/dashboard/styles/uiStyle";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const buttonStyle = createTheme(uiStyle);
 
 const Button = ({ children, isDisabled }) => {
   const MaterialButton = styled(MuiButton)(({ theme }) => ({
-    backgroundColor: "#a11215",
+    color: "white",
     borderRadius: "9999px",
     boxShadow: "none",
     textTransform: "none",
     "&:hover": {
+      backgroundColor: theme.palette.primary.light,
       boxShadow: "none",
     },
     width: "100%",
@@ -19,7 +24,13 @@ const Button = ({ children, isDisabled }) => {
     },
   }));
 
-  return <MaterialButton disabled={isDisabled} variant="contained">{children}</MaterialButton>;
+  return (
+    <ThemeProvider theme={buttonStyle}>
+      <MaterialButton disabled={isDisabled} variant="contained">
+        {children}
+      </MaterialButton>
+    </ThemeProvider>
+  );
 };
 
 export default Button;

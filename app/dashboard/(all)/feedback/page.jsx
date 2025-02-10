@@ -1,16 +1,16 @@
 "use client";
 import { TextField, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import textFieldStyle from "../styles/textFieldStyle";
+import textFieldStyle from "../../styles/textFieldStyle";
 
-const ContactUs = () => {
+const Feedback = () => {
   const MuiTextField = styled(TextField)(textFieldStyle);
 
   return (
     <div className="px-4 py-12 flex flex-col gap-10">
       {/* Title */}
       <div className="text-3xl font-bold">
-        <h2>Contact Us</h2>
+        <h2>Feedback</h2>
       </div>
 
       {/* Form */}
@@ -78,4 +78,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Feedback;

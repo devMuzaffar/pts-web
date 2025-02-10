@@ -7,8 +7,11 @@ import DropdownMenu from "./components/DropdownMenu";
 import { counselorList, profileList } from "./list/dropDownList";
 import { useContext, useState } from "react";
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const navigate = useRouter();
+
   // Mobile Sidebar Button Context
   const { setIsMobileSidebar } = useContext(SidebarContext);
 
@@ -36,6 +39,29 @@ const Header = () => {
     setIsMobileSidebar(true);
   };
 
+  // Handle Share Function
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          url: window.location.href,
+        });
+        console.log("URL shared successfully");
+      } catch (error) {
+        console.error("Error sharing the URL:", error);
+      }
+    } else {
+      alert("Web Share API is not supported in your browser.");
+    }
+  }
+
+  // Profile Function navigates to other pages on Click
+  const handleProfileNav = (item) => {
+    if(item.text === "My Profile"){
+      navigate.push('/dashboard/profile');
+    }
+  }
+
   return (
     <div className="flex justify-between pt-4 px-2 pb-1">
       {/* Left */}
@@ -54,6 +80,7 @@ const Header = () => {
             className={"hidden sm:flex"}
             imgSrc={"/dashboard/header/share.svg"}
             text={"Share with friends"}
+            onClick={handleShare}
           />
 
           {/* Talk to Counselor */}
@@ -116,6 +143,7 @@ const Header = () => {
           open={openProfile}
           list={profileList}
           className="font-semibold"
+          onClick={handleProfileNav}
         />
       </div>
     </div>
