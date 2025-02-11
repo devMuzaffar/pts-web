@@ -1,20 +1,31 @@
+import AcademicStats from "./components/AcademicStats";
+import ProfileDetails from "./components/ProfileDetails";
+import ProfileIcon from "./components/ProfileIcon";
+import QuickRoutes from "./components/QuickRoutes";
+import Subscription from "./components/Subscription";
+
 
 const Profile = () => {
   return (
-    <div className="border-2 border-red-500">
+    <div className="px-4 py-10 flex flex-col gap-4">
 
       {/* Left Profile */}
-      <div className="border-2 border-blue-500">
+      <ProfileIcon />
 
-        {/* Icon */}
-        <div className="">
+      {/* Profile Details */}
+      <ProfileDetails />
 
-        </div>
+      {/* Academic Stats */}
+      <AcademicStats />
 
-      </div>
+      {/* Subscription */}
+      <Subscription />
 
+      {/* Quick Routes */}
+      <QuickRoutes />
+      
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

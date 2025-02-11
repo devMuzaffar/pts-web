@@ -32,12 +32,18 @@ const pageTheme = {
 
 const primary = "#02A6E5";
 const secondary = "#F29F05";
+const textDark = "#25272b";
+const textPrimaryDark = "#01507a";
 
 const dashboardTheme = {
   extend: {
     colors: {
-      primary: primary,
-      secondary: secondary,
+      primary,
+      secondary,
+    },
+    textColor: {
+      'dark': textDark,
+      'primary-dark': textPrimaryDark,
     },
     backgroundColor: {
       contentbg: "#F1F4FB",
