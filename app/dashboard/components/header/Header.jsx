@@ -1,3 +1,4 @@
+"use client";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import Button from "./components/Button";
 import { PiBellLight } from "react-icons/pi";
@@ -53,14 +54,14 @@ const Header = () => {
     } else {
       alert("Web Share API is not supported in your browser.");
     }
-  }
+  };
 
   // Profile Function navigates to other pages on Click
   const handleProfileNav = (item) => {
-    if(item.text === "My Profile"){
-      navigate.push('/dashboard/profile');
+    if (item.text === "My Profile") {
+      navigate.push("/dashboard/profile");
     }
-  }
+  };
 
   return (
     <div className="flex justify-between pt-4 px-2 pb-1">

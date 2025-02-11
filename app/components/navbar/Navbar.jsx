@@ -2,7 +2,7 @@
 import { ModalContext } from "@/app/context/modalContext";
 import { useContext, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { LuSearch, LuUser2, LuShoppingCart, LuMenu } from "react-icons/lu";
+import { LuSearch, LuUserRound, LuShoppingCart, LuMenu } from "react-icons/lu";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -79,7 +79,7 @@ const Navbar = () => {
           <div className="flex gap-2">
             <LuSearch className="text-gray-500 lg:hidden" size={21} />
             <a href="" onClick={openModal}>
-              <LuUser2 className="text-gray-500" size={21} />
+              <LuUserRound className="text-gray-500" size={21} />
             </a>
             <div className="relative flex">
               <LuShoppingCart className="text-gray-500" size={21} />
@@ -102,7 +102,7 @@ const Navbar = () => {
           {/* Icons */}
           <div className="flex gap-2 md:hidden">
             <a href="/" onClick={openModal}>
-              <LuUser2 className="text-gray-500" size={21} />
+              <LuUserRound className="text-gray-500" size={21} />
             </a>
             <div className="relative flex">
               <LuShoppingCart className="text-gray-500" size={21} />
