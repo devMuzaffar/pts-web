@@ -1,14 +1,20 @@
+"use client";
 import Title from "../shared/Title";
 import ViewAllButton from "../shared/ViewAllButton";
 import blockStyle from "./style/blockStyle";
+import { useRouter } from "next/navigation";
 
 const Block3 = () => {
+  const router = useRouter();
+
+  const handleClick = () => router.push('/dashboard/bookmarks');
+
   return (
     <div className={blockStyle}>
       {/* Title */}
       <div className="flex justify-between">
         <Title>Bookmarks</Title>
-        <ViewAllButton hasOutline={true} />
+        <ViewAllButton onClick={handleClick} hasOutline={true} />
       </div>
 
       {/* Content */}

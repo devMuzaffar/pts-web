@@ -1,3 +1,4 @@
+"use client";
 import { FaArrowRight } from "react-icons/fa6";
 
 const QuickLinkButton = ({
@@ -8,10 +9,19 @@ const QuickLinkButton = ({
   textClass,
   descClass,
   iconClass,
+  onClick
 }) => {
+
+  const handleClick = () => {
+    if(onClick){
+      onClick();
+    }
+  }
+
   return (
     <div
       className={`cursor-pointer bg-white rounded-lg shadow-sm shadow-gray-300 flex items-center justify-between px-4 py-3 w-full ${className}`}
+      onClick={handleClick}
     >
       {/* Icon & Text Block */}
       <div className="flex items-center gap-3">

@@ -1,16 +1,25 @@
+"use client";
 import { viewAllButton } from "@/dashboard/styles/materialButton";
 import { ButtonBase } from "@mui/material";
 
-const ViewAllButton = ({ hasOutline }) => {
+const ViewAllButton = ({ hasOutline, onClick }) => {
   const fontThick = hasOutline ? "font-medium" : "font-normal";
 
+  const handleClick = () => {
+    if(onClick){
+      onClick();
+    }
+  }
+
   return (
-    <ButtonBase
+    <div onClick={handleClick}>
+      <ButtonBase
       sx={viewAllButton({ hasOutline })}
       className={`text-xs truncate font-normal ${fontThick}`}
     >
       View All
     </ButtonBase>
+    </div>
   );
 };
 

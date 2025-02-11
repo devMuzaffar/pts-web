@@ -1,11 +1,17 @@
+"use client";
 import quickLinksList from "@/app/dashboard/(all)/list/quickLinks";
 import QuickLinkButton from "../shared/QuickLinkButton";
 import SubTitle from "../shared/SubTitle";
 import Title from "../shared/Title";
 import ViewAllButton from "../shared/ViewAllButton";
 import blockStyle from "./style/blockStyle";
+import { useRouter } from "next/navigation";
 
 const Block1 = () => {
+  const router = useRouter();
+
+  const handleClick = () => router.push('/dashboard/analytics');
+
   return (
     <div className={blockStyle}>
 
@@ -36,7 +42,7 @@ const Block1 = () => {
           <div className="flex flex-col gap-3">
             <SubTitle>
               <p>Recent Test Results</p>
-              <ViewAllButton />
+              <ViewAllButton onClick={handleClick}/>
             </SubTitle>
             <div>
               <p className="text-xs text-slate-500">No Recent Tests found</p>
