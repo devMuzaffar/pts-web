@@ -22,6 +22,13 @@ const textFieldStyle = {
         lineHeight: "20px",
         color: primary,
     },
+
+    "& .MuiInput-underline:before": {
+      borderBottom: "1px solid #9ca3af",
+    },
+    "& .MuiInput-underline:hover:before": {
+      borderBottom: "1px solid #9ca3af !important",
+    },
   }
 
 export default textFieldStyle;

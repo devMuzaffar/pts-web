@@ -1,7 +1,12 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { ButtonBase } from "@mui/material";
 
 const ProfileDetails = () => {
   const title = "text-3xl leading-10 text-dark font-bold";
+  const router = useRouter();
+
+  const navigateEditProfile = () => router.push('edit-profile');
 
   return (
     <div className="grid gap-4 py-2 sm:grid-cols-2 md:grid-cols-4">
@@ -28,7 +33,7 @@ const ProfileDetails = () => {
           style={{ borderRadius: 99999, width: "100%", height: "40px" }}
           className="!text-primary"
         >
-          <div className="flex justify-center items-center border-[1px] border-primary text-primary w-full uppercase font-semibold rounded-full h-full">
+          <div className="flex justify-center items-center border-[1px] border-primary text-primary w-full uppercase font-semibold rounded-full h-full" onClick={navigateEditProfile}>
             Edit Profile
           </div>
         </ButtonBase>
