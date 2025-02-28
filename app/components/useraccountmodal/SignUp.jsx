@@ -1,9 +1,17 @@
-const SignUp = ({ isNewUser, setIsNewUser }) => {
+"use client";
+import { ModalContext } from "@/app/context/modalContext";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+
+const SignUp = ({ setIsNewUser }) => {
+  const { setIsModalOpen } = useContext(ModalContext);
   const goBack = () => setIsNewUser(false);
+  const router = useRouter();
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log("Sign up");
+    setIsModalOpen(false);
+    router.replace("/dashboard");
   };
 
   return (

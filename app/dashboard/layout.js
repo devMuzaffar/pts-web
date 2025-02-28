@@ -16,9 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AppRouterCacheProvider>
         <body suppressHydrationWarning>
-          <AppLayout>
-            {children}
-          </AppLayout>
+          <AppLayout>{children}</AppLayout>
         </body>
       </AppRouterCacheProvider>
     </html>

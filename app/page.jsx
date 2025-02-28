@@ -1,3 +1,4 @@
+"use client";
 import {
   Landing,
   About,
@@ -11,6 +12,8 @@ import {
   Testimonial,
   FAQ,
 } from "./components/index";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 import SiteLayout from "./SiteLayout";
 
 const MainSections = () => {
@@ -33,8 +36,10 @@ const MainSections = () => {
 
 export default function Home() {
   return (
-    <SiteLayout>
+    <Provider store={store}>
+      <SiteLayout>
         <MainSections />
-    </SiteLayout>
+      </SiteLayout>
+    </Provider>
   );
 }

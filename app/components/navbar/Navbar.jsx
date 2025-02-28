@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { LuSearch, LuUserRound, LuShoppingCart, LuMenu } from "react-icons/lu";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -22,9 +23,9 @@ const Navbar = () => {
         {/* Left Logo & Links */}
         <div className="flex justify-between items-center gap-5">
           {/* Logo */}
-          <div>
+          <div className="w-24 h-10 md:w-32 relative">
             <Link href="/">
-              <img className="w-24 lg:w-32" src="/logo-text.png" alt="" />
+              <Image className="absolute inset-0 object-contain" fill={true} src="/logo-text.png" alt="" />
             </Link>
           </div>
 

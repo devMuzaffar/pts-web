@@ -65,7 +65,9 @@ const useSidebar = ({
       if (routeText.includes("home")) {
         router.push("/dashboard/");
       } else if (routeText.includes("log")) {
-        window.close(); // Goes back to Root
+        // Add Logout
+        // Logout will Clear Cookies as well
+        router.replace("/");
       } else {
         router.push(routePath);
       }

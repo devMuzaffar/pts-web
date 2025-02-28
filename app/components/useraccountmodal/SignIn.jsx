@@ -1,9 +1,11 @@
 "use client";
 import { ModalContext } from "@/app/context/modalContext";
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
 const SignIn = ({ isNewUser, setIsNewUser }) => {
   const { setIsModalOpen } = useContext(ModalContext);
+  const router = useRouter();
 
   const changeForm = (e) => {
     e.preventDefault();
@@ -12,8 +14,8 @@ const SignIn = ({ isNewUser, setIsNewUser }) => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    window.open("/dashboard", "_blank");
     setIsModalOpen(false);
+    router.replace('/dashboard');
   };
 
   return (
