@@ -1,68 +1,114 @@
 "use client";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import InputAdornment from "@mui/material/InputAdornment";
+import { useState } from "react";
+import { TextField, InputAdornment, MenuItem, Select } from "@mui/material";
 import countries from "../../list/countries";
+import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
+import { formatIncompletePhoneNumber } from "libphonenumber-js";
 
-const InputFieldPhone = () => {
-  // Render Option
-  const renderOption = (props, option) => {
-    const { key, ...optionProps } = props;
-    return (
-      <Box
-        key={key}
-        component="li"
-        sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-        {...optionProps}
-      >
-        <img
-          loading="lazy"
-          width="20"
-          srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-          src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-          alt=""
-        />
-        {option.label} ({option.code}) +{option.phone}
-      </Box>
-    );
+const InputFieldPhone = ({disabled = false, required = false, label}) => {
+  const [selectedCountry, setSelectedCountry] = useState(
+    countries.find((c) => c.code === "PK")
+  );
+  const [phoneNumber, setPhoneNumber] = useState(`+${selectedCountry.phone}`);
+
+  const handleSelectCountry = (event) => {
+    const country = countries.find((c) => c.code === event.target.value);
+    setSelectedCountry(country);
+    setPhoneNumber(`+${country.phone}`);
   };
 
-  // Render Input
-  const renderInput = (params) => (
+  const handlePhoneNumber = (e) => {
+    let text = e.target.value;
+    if (/^[0-9+\-\s]*$/.test(text)) {
+      const countryCode = `+${selectedCountry.phone}`;
+      if (!text.startsWith(countryCode)) {
+        text = countryCode;
+      }
+      const formattedNumber = formatIncompletePhoneNumber(
+        text,
+        selectedCountry?.code
+      );
+      setPhoneNumber(formattedNumber);
+    }
+  };
+
+  return (
     <TextField
-      {...params}
-      label="Choose a country"
+      fullWidth
+      required={required}
+      disabled={disabled}
       variant="standard"
-      slotProps={{
-        htmlInput: {
-          ...params.inputProps,
-          autoComplete: "new-password", // disable autocomplete and autofill
-        },
-      }}
+      label={label}
+      placeholder="Enter phone number"
+      value={phoneNumber}
+      sx={textFieldStyle}
+      onChange={handlePhoneNumber}
       InputProps={{
-        ...params.InputProps,
         startAdornment: (
-          <InputAdornment position="start">
-            <img
-              width="20"
-              srcSet={`https://flagcdn.com/w40/${params.inputProps.value.toLowerCase()}.png 2x`}
-              src={`https://flagcdn.com/w20/${params.inputProps.value.toLowerCase()}.png`}
-              alt="Country Flag"
-            />
+          <InputAdornment
+            position="start"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <Select
+              disabled={disabled}
+              value={selectedCountry?.code}
+              onChange={handleSelectCountry}
+              variant="standard"
+              sx={{
+                "& .MuiSelect-select": {
+                  display: "flex",
+                  alignItems: "center",
+                  marginRight: "2px",
+                },
+              }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    width: "100%", 
+                    height: "50%",
+                    maxWidth: "300px",
+                    borderRadius: '12px'
+                  },
+                },
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left",
+                },
+                transformOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left",
+                },
+              }}
+              renderValue={() => (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    className="min-w-5 w-5"
+                    src={`https://flagcdn.com/w40/${selectedCountry?.code.toLowerCase()}.png`}
+                    alt=""
+                  />
+                </div>
+              )}
+            >
+              {countries.map((country) => (
+                <MenuItem
+                  key={country.code}
+                  value={country.code}
+                  sx={{ minHeight: 30, fontSize: "0.875rem" }}
+                >
+                  <img
+                    width="25"
+                    height="14"
+                    src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
+                    alt=""
+                    style={{ marginRight: 8 }}
+                  />
+                  {country.label} (+{country.phone})
+                </MenuItem>
+              ))}
+            </Select>
           </InputAdornment>
         ),
       }}
-    />
-  );
-
-  return (
-    <Autocomplete
-      options={countries}
-      autoHighlight
-      getOptionLabel={(option) => option.label}
-      renderOption={renderOption}
-      renderInput={renderInput}
     />
   );
 };

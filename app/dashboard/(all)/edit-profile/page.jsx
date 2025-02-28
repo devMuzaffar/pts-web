@@ -1,33 +1,30 @@
-import HeaderImg from "./components/HeaderImg"
-import PasswordForm from "./components/PasswordForm"
-import ProfileForm from "./components/ProfileForm"
-import ProfileHeader from "./components/ProfileHeader"
+import HeaderImg from "./components/HeaderImg";
+import PasswordForm from "./components/PasswordForm";
+import ProfileForm from "./components/ProfileForm";
+import ProfileHeader from "./components/ProfileHeader";
 
 const EditProfile = () => {
   return (
-    <div className="border-2 border-red-500">
+    <div>
+      {/* Background */}
+      <HeaderImg />
 
-        {/* Background */}
-        <HeaderImg />
+      {/* Padding Block */}
+      <div className="px-4 md:px-10 xl:px-24">
+        {/* Profile Header */}
+        <ProfileHeader />
 
-        {/* Padding Block */}
-        <div className="px-4 md:px-10 lg:px-20">
+        {/* grid gap-10 md:grid-cols-3 */}
+        <div className="py-14 flex flex-col gap-10 md:flex-row">
+          {/* Profile Form */}
+          <ProfileForm />
 
-            {/* Profile Header */}
-            <ProfileHeader />
-
-            <div className="py-14 grid md:grid-cols-3 gap-10">
-              {/* Profile Form */}
-              <ProfileForm />
-
-              {/* Change Password */}
-              <PasswordForm />
-            </div>
-
-        </div>   
-
+          {/* Change Password */}
+          <PasswordForm />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditProfile
+export default EditProfile;
