@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
 import { normalizedText } from "@/dashboard/utils/helpers/stringUtils";
-import menuList from "../../../../../(all)/list/menuList";
+import getMenuList from "@/app/dashboard/list/menuList";
 
 const DropdownMenu = ({ isSelected, dropdownCondition }) => {
+  const menuList = getMenuList();
   const router = useRouter();
   const pathname = usePathname();
   const { dropdownList } = useContext(SidebarContext);

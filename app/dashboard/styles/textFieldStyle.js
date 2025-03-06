@@ -5,6 +5,7 @@ const textFieldStyle = {
       fontSize: "14px",
       lineHeight: "20px",
       color: "#475569",
+      // color: primary,
     },
     "& .MuiInput-underline:before": {
       borderBottomColor: "#e2e8f0",
@@ -29,6 +30,9 @@ const textFieldStyle = {
     "& .MuiInput-underline:hover:before": {
       borderBottom: "1px solid #9ca3af !important",
     },
+    "& .MuiFormHelperText-root": {
+      color: primary
+    }
   }
 
 export default textFieldStyle;

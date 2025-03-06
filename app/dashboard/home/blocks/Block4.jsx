@@ -10,7 +10,7 @@ import SlidePrevButton from "./components/SlidePrevButton";
 import SlideNextButton from "./components/SlideNextButton";
 import { useRef, useState } from "react";
 import YoutubeCard from "./components/YoutubeCard";
-import YTLinksID from "@/app/dashboard/(all)/list/YTLinks";
+import YTLinksID from "@/app/dashboard/list/YTLinks";
 
 const swiperBreakpoints = {
   0: {

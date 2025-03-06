@@ -3,8 +3,11 @@ import {
   normalizedText,
 } from "@/dashboard/utils/helpers/stringUtils";
 import { usePathname, useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
-import menuList from "@/app/dashboard/(all)/list/menuList";
+import { useEffect } from "react";
+import getMenuList from "@/app/dashboard/list/menuList";
+import { signout } from "@/app/lib/apiClient";
+import { useDispatch } from "react-redux";
+import { removeUser } from "@/app/redux/slices/userSlice";
 
 const useSidebar = ({
   setDropdownList,
@@ -12,6 +15,8 @@ const useSidebar = ({
   setIsSidebarHover,
   setSelectedIndex,
 }) => {
+  const dispatch = useDispatch();
+  const menuList = getMenuList();
   const router = useRouter();
   const pathname = usePathname();
   let currentIndex = null;
@@ -53,7 +58,7 @@ const useSidebar = ({
   //
   // Handle Navigation Function
   //
-  const handleNavigation = (index, text, dropdownList) => {
+  const handleNavigation = async (index, text, dropdownList) => {
     // Sets Index
     setSelectedIndex(index);
 
@@ -65,9 +70,15 @@ const useSidebar = ({
       if (routeText.includes("home")) {
         router.push("/dashboard/");
       } else if (routeText.includes("log")) {
-        // Add Logout
-        // Logout will Clear Cookies as well
-        router.replace("/");
+
+        // Logs out of Dashboard
+        const response = await signout();
+        if (response.status === 200) {
+          window.location.href = "/";
+          setTimeout(() => {dispatch(removeUser())}, 500);
+        } else {
+          alert(response.message);
+        }
       } else {
         router.push(routePath);
       }

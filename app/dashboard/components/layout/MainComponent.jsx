@@ -1,12 +1,15 @@
-//
-// Main Component - Renders Whole UI
-//
-
+"use client";
 import { useState } from "react";
 import { Header, Notification, Sidebar } from "../index";
 import SidebarProvider from "@/dashboard/context/SidebarContext";
 import PageWrapper from "../wrappers/PageWrapper";
-import useDelay from "@/dashboard/utils/helpers/useDelay";
+import { useSelector } from "react-redux";
+import { notFound } from "next/navigation";
+import useDelay from "../../utils/helpers/useDelay";
+
+//
+// Main Component - Renders Whole UI
+//
 
 // <SidebarProvider> for Show/Hide sidebar from both Sidebar & Header Component
 // <PageWrapper> Wraps Child Component with (Loading + Animation)
@@ -14,13 +17,16 @@ import useDelay from "@/dashboard/utils/helpers/useDelay";
 const MainComponent = ({ children }) => {
   // Notification State
   const [isOpen, setIsOpen] = useState(false);
+  const isUserExist = useSelector((state) => state.user.auth);
 
   // Dummy Delay for Notification
   useDelay(() => {
     setIsOpen(true);
   }, 2000);
 
-  return (
+  return !isUserExist ? (
+    notFound()
+  ) : (
     <SidebarProvider>
       {/* Notification */}
       <Notification
@@ -28,7 +34,7 @@ const MainComponent = ({ children }) => {
         onClose={() => {
           setIsOpen(false);
         }}
-        message="Admin Mode"
+        message={`Login Sucessfully`}
         time={3000}
       />
 

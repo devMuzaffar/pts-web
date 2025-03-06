@@ -1,5 +1,5 @@
 "use client";
-import bottomLinks from "@/app/dashboard/(all)/list/bottomLinks";
+import bottomLinks from "@/app/dashboard/list/bottomLinks";
 import QuickLinkButton from "../shared/QuickLinkButton";
 import { useRouter } from "next/navigation";
 

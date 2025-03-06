@@ -1,4 +1,4 @@
-import newsAdsList from "../../list/newsAdsList";
+import newsAdsList from "../../../list/newsAdsList";
 import NewsAdsCard from "./NewsAdsCard";
 
 const NewsAdsList = () => {

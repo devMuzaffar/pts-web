@@ -23,9 +23,9 @@ const Navbar = () => {
         {/* Left Logo & Links */}
         <div className="flex justify-between items-center gap-5">
           {/* Logo */}
-          <div className="w-24 h-10 md:w-32 relative">
+          <div className="w-24 h-10 md:w-32 relative inset-0">
             <Link href="/">
-              <Image className="absolute inset-0 object-contain" fill={true} src="/logo-text.png" alt="" />
+              <Image className="object-contain" fill={true} src="/logo-text.png" alt="" sizes="(max-width: 768px) 8rem, 6rem"/>
             </Link>
           </div>
 

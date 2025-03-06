@@ -7,12 +7,17 @@ import InputDob from "./InputFields/InputDob";
 import SelectCountry from "./InputFields/SelectCountry";
 import AcademicRecords from "./InputFields/AcademicRecords";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const ProfileForm = () => {
   const genderList = ["Male", "Female"];
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState(genderList[0]);
   const [country, setCountry] = useState("Pakistan");
   const [city, setCity] = useState("Karachi");
+  const user = useSelector(state => state.user);
+
 
   // Many Field Lack States
 
@@ -25,16 +30,16 @@ const ProfileForm = () => {
 
       <div className="p-4 flex flex-col gap-4 item-center">
         {/* Name */}
-        <InputField label={"Your Name"} required />
+        <InputField label={"Your Name"} name={"Name"} required defaultValue={user.name} />
 
         {/* Email */}
-        <InputField label={"Email"} required />
+        <InputField label={"Email"} disabled defaultValue={user.email}/>
 
         {/* Whatsapp No. */}
         <InputFieldPhone required disabled label={"Whatsapp No"} />
 
-        {/* Contact No */}
-        <InputFieldPhone label={"Contact No"} />
+        {/* Whatsapp No. */}
+        <InputFieldPhone required label={"Phone No"} />
 
         {/* Gender */}
         <SelectField

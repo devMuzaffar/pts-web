@@ -16,7 +16,7 @@ const UserAccountModal = () => {
 
   return (
     <div
-      className={`bg-black bg-opacity-50 w-full h-full fixed z-50
+      className={`bg-black bg-opacity-50 w-full h-full fixed z-[60]
     ${modalVisibleClass} justify-center items-center`}
       onClick={hideModal}
     >

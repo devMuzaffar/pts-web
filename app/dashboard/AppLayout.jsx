@@ -1,18 +1,14 @@
 "use client";
-import { useState } from "react";
 import Loading from "./loading";
-import useDelay from "./utils/helpers/useDelay";
 import MainComponent from "./components/layout/MainComponent";
+import useAutoLogin from "../hooks/useAutoLogin";
 
 const AppLayout = ({ children }) => {
-  const [isFirstTime, setIsFirstTime] = useState(true);
-
-  // Loading Timer
-  useDelay(() => setIsFirstTime(false), 250);
+  const loading = useAutoLogin();
 
   return (
     <div className="app flex justify-end relative bg-contentbg overflow-x-hidden">
-      {isFirstTime ? (
+      {loading ? (
         <Loading isMain={true} />
       ) : (
         <MainComponent>{children}</MainComponent>

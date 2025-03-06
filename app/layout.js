@@ -1,5 +1,6 @@
 import { ModalProvider } from "./context/modalContext";
 import "./globals.css";
+import ReduxProvider from "./ReduxProvider";
 
 export const metadata = {
   title: "PTS Education",
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body suppressHydrationWarning>
         <ModalProvider>
-          {children}
+            <ReduxProvider>
+              {children}
+            </ReduxProvider>
         </ModalProvider>
       </body>
     </html>

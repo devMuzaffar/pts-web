@@ -2,8 +2,11 @@
 import { ButtonBase } from "@mui/material";
 import { MdOutlineEdit } from "react-icons/md";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { capitalize } from "@/app/dashboard/utils/helpers/stringUtils";
 
 const ProfileHeader = () => {
+  const user = useSelector(state => state.user);
   const profileMotion = {
     start: { scale: 0 },
     end: { scale: 1 },
@@ -54,7 +57,7 @@ const ProfileHeader = () => {
         transition={textMotion.transition}
       >
         <div className="text-2xl font-semibold py-2 text-gray-500 md:text-4xl">
-          <p>Example Name K</p>
+          <p>{capitalize(user.name)}</p>
         </div>
       </motion.div>
     </div>

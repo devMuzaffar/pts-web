@@ -1,4 +1,4 @@
-import menuList from "../../../../(all)/list/menuList";
+import getMenuList from "@/app/dashboard/list/menuList";
 import MenuButton from "../menubutton/MenuButton";
 import SidebarHeader from "../sidebarheader/SidebarHeader";
 import { useContext, useState } from "react";
@@ -6,6 +6,7 @@ import { SidebarContext } from "@/dashboard/context/SidebarContext";
 import useSidebar from "../../hooks/useSidebar";
 
 const SidebarBody = () => {
+  const menuList = getMenuList();
   const { setDropdownList, isSidebarFixed, setIsSidebarHover } =
     useContext(SidebarContext);
 

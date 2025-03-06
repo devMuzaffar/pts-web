@@ -11,14 +11,10 @@ export const metadata = {
   description: "Dashboard for managing your studies",
 };
 
-export default function RootLayout({ children }) {
+export default function DashboardLayout({ children }) {
   return (
-    <html lang="en">
       <AppRouterCacheProvider>
-        <body suppressHydrationWarning>
           <AppLayout>{children}</AppLayout>
-        </body>
       </AppRouterCacheProvider>
-    </html>
   );
 }

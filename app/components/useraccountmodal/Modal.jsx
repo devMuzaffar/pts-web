@@ -27,13 +27,17 @@ const Modal = () => {
 
   return (
     <div
-      className="bg-[#F1FCFF] px-4 py-2 flex flex-col justify-evenly items-center border-2 w-96"
+      className="bg-[#F1FCFF] px-4 py-2 flex flex-col justify-evenly items-center border-2 w-full h-full overflow-y-auto md:h-auto md:w-96"
       onClick={(e) => {
         preventClosing(e);
       }}
     >
-      <div className="w-full flex justify-end cursor-pointer">
-        <IoClose size={32} className="text-red-500" onClick={closeModal} />
+      <div className="w-full flex justify-end">
+        <IoClose
+          size={32}
+          className="text-red-500 cursor-pointer"
+          onClick={closeModal}
+        />
       </div>
 
       <div className={`flex flex-col text-center gap-2 ${userViewClass}`}>

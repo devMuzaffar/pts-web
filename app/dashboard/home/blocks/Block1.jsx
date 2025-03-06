@@ -1,5 +1,5 @@
 "use client";
-import quickLinksList from "@/app/dashboard/(all)/list/quickLinks";
+import quickLinksList from "@/app/dashboard/list/quickLinks";
 import QuickLinkButton from "../shared/QuickLinkButton";
 import SubTitle from "../shared/SubTitle";
 import Title from "../shared/Title";
