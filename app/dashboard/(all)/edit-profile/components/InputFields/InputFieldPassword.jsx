@@ -1,24 +1,24 @@
 "use client";
 import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
+import { ThemeProvider } from "@mui/material/styles";
 import { InputAdornment } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { MdOutlineRemoveRedEye, MdOutlineVisibilityOff } from "react-icons/md";
+import uiStyle from "@/app/dashboard/styles/uiStyle";
 
-const InputFieldPassword = ({ label, disabled = false, required = false }) => {
+const InputFieldPassword = (props) => {
   const [viewPassword, setViewPassword] = useState(false);
 
   return (
-    <TextField
+    <ThemeProvider theme={uiStyle}>
+      <TextField
       fullWidth
-      required={required}
-      disabled={disabled}
-      error={false}
-      label={label}
       sx={textFieldStyle}
       type={viewPassword ? "text" : "password"}
       variant="standard"
+      {...props}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
@@ -35,8 +35,8 @@ const InputFieldPassword = ({ label, disabled = false, required = false }) => {
           </InputAdornment>
         ),
       }}
-      // helperText="Name is required field"
     />
+    </ThemeProvider>
   );
 };
 

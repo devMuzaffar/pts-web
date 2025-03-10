@@ -1,23 +1,20 @@
 "use client";
-import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
-import { styled } from "@mui/material/styles";
+import uiStyle from "@/app/dashboard/styles/uiStyle";
+import textFieldStyle from "@/dashboard/styles/textFieldStyle";
 import TextField from "@mui/material/TextField";
+import { ThemeProvider } from "@mui/material/styles";
 
-const InputField = ({ label, disabled = false, required = false, placeholder, defaultValue, name }) => {
-  const MuiTextField = styled(TextField)(textFieldStyle);
+const InputField = (props) => {
   return (
-    <MuiTextField
+    <ThemeProvider theme={uiStyle}>
+      <TextField
       fullWidth
-      required={required}
-      disabled={disabled}
-      error={false}
-      label={label}
-      name={name}
-      defaultValue={defaultValue || ""}
+      sx={textFieldStyle}
       variant="standard"
-      placeholder={placeholder || ""}
-      helperText={name ? `${name} is required field` : false}
+      {...props}
     />
+    </ThemeProvider>
+    
   );
 };
 

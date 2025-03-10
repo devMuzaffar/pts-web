@@ -13,20 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  username  String @unique
-  email String @unique
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  username String @unique
+  email    String @unique
   password String
-  role String
+  role     String
+
+  profile String?
+  whatsappNumber String?
+  phoneNumber    String?
+  gender         String?
+  dob            String?
+  address        String?
+  country        String?
+  city           String?
+  lastInstitute  String?
+  degrees        Json?
+
   RefreshToken RefreshToken[]
 }
 
 model RefreshToken {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  token String @unique
-  userId String @db.ObjectId @unique
-  user User @relation(fields: [userId], references: [id])
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  token  String @unique
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
 }

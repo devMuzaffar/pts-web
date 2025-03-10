@@ -1,7 +1,7 @@
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
 import Drawer from "@mui/material/Drawer";
 import { useContext, useEffect } from "react";
-import useViewportWidth from "../../hooks/useViewportWidth";
+import useViewportWidth from "../../../../hooks/useViewportWidth";
 
 export const MobileDrawer = ({ children }) => {
   const { isMobileSidebar, setIsMobileSidebar } = useContext(SidebarContext);

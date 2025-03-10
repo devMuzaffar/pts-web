@@ -2,10 +2,7 @@
 import { useState } from "react";
 import SelectField from "./SelectField";
 import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
-import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import { InputAdornment } from "@mui/material";
+import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { MdDeleteOutline } from "react-icons/md";
 const degreeList = [
   "O Levels",
@@ -15,11 +12,35 @@ const degreeList = [
   "Graduation",
 ];
 
-const AcademicField = ({ index, id, list, setList }) => {
-  const MuiTextField = styled(TextField)(textFieldStyle);
-  const [degree, setDegree] = useState("");
+const AcademicField = ({ index, setList, list }) => {
+  // Degree & Percentage Select State
+  const [degree, setDegree] = useState(list[index]?.degree || "");
+  const [percentage, setPercentage] = useState(list[index]?.percentage || "");
+
+  // Remove Current Record
   const removeCurrentItem = () =>
-    setList(list.filter((item) => item.id !== id));
+    setList((prevList) => prevList.filter((item, i) => i !== index));
+
+  // Handle Degree Change
+  const handleDegreeChange = (newDegree) => {
+    setDegree(newDegree);
+    setList((prevList) =>
+      prevList.map((item, i) =>
+        i === index ? { ...item, degree: newDegree } : item
+      )
+    );
+  };
+
+  // Handle Percentage Change
+  const handlePercentageChange = (e) => {
+    const newPercentage = e.target.value;
+    setPercentage(newPercentage);
+    setList((prevList) =>
+      prevList.map((item, i) =>
+        i === index ? { ...item, percentage: newPercentage } : item
+      )
+    );
+  };
 
   return (
     <div className="flex flex-col gap-8 md:flex-row">
@@ -27,16 +48,17 @@ const AcademicField = ({ index, id, list, setList }) => {
       <SelectField
         label={"Degree"}
         value={degree}
-        setValue={setDegree}
+        setValue={handleDegreeChange}
         list={degreeList}
       />
 
       {/* Input Field */}
-      <MuiTextField
+      <TextField
         fullWidth
-        error={false}
+        sx={textFieldStyle}
+        value={percentage}
+        onChange={handlePercentageChange}
         label="CGPA / Grade / Percentage"
-        defaultValue=""
         variant="standard"
         placeholder="3.4 / A / 90%"
         InputProps={{

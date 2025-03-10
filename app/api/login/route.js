@@ -16,8 +16,6 @@ export async function POST(req) {
     password: Joi.string().pattern(passwordPattern).required(),
   });
 
-  console.log(requestBody)
-
   const { error } = userLoginSchema.validate(requestBody);
 
   // 2. If validation error, return error

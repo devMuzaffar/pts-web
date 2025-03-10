@@ -7,13 +7,14 @@ import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
 import { ThemeProvider } from '@mui/material/styles';
 import datePickerTheme from "@/app/dashboard/styles/datePickerTheme";
 
-const InputDob = () => {
-  const [selectedDate, setSelectedDate] = useState(dayjs());
+const InputDob = ({value, setValue}) => {
+  const [selectedDate, setSelectedDate] = useState(value ? dayjs(value, "DD-MM-YYYY") : dayjs());
 
   const handleDateChange = (newValue) => {
     setSelectedDate(newValue);
-    const formattedDate = newValue.format('DD-MM-YYYY');
-    console.log(formattedDate);
+    if(setValue){
+      setValue(newValue.format('DD-MM-YYYY'));
+    }
   };
 
   return (

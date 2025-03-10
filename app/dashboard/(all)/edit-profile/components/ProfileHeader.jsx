@@ -1,23 +1,12 @@
 "use client";
-import { ButtonBase } from "@mui/material";
-import { MdOutlineEdit } from "react-icons/md";
-import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { capitalize } from "@/app/dashboard/utils/helpers/stringUtils";
+import { profileMotion, textMotion } from "./styles/motionStyles";
+import PhotoAvatar from "./PhotoAvatar";
 
 const ProfileHeader = () => {
-  const user = useSelector(state => state.user);
-  const profileMotion = {
-    start: { scale: 0 },
-    end: { scale: 1 },
-    transition: { duration: 0.2, ease: "easeOut" },
-  };
-
-  const textMotion = {
-    start: { opacity: 0, x: -100 },
-    end: { opacity: 1, x: 0 },
-    transition: { type: "spring", duration: 0.5, ease: "easeOut" },
-  };
+  const name = useSelector(state => state.user.name);
 
   return (
     <div className="flex flex-col w-full items-center gap-1 -mt-16 md:flex-row md:justify-start md:items-end md:gap-6">
@@ -29,23 +18,7 @@ const ProfileHeader = () => {
         exit={profileMotion.start}
         transition={profileMotion.transition}
       >
-        <div className="border-4 border-white bg-[#bdbdbd] rounded-full w-32 h-32 flex justify-center items-center relative shadow-md">
-          <p className="text-6xl text-white font-medium">M</p>
-
-          {/* Edit profile */}
-          <ButtonBase
-            style={{
-              borderRadius: 999999,
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-            }}
-          >
-            <div className="bg-primary w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white">
-              <MdOutlineEdit size={24} />
-            </div>
-          </ButtonBase>
-        </div>
+        <PhotoAvatar/>
       </motion.div>
 
       {/* Name */}
@@ -57,7 +30,7 @@ const ProfileHeader = () => {
         transition={textMotion.transition}
       >
         <div className="text-2xl font-semibold py-2 text-gray-500 md:text-4xl">
-          <p>{capitalize(user.name)}</p>
+          <p>{capitalize(name)}</p>
         </div>
       </motion.div>
     </div>

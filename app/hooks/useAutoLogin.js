@@ -23,6 +23,16 @@ const useAutoLogin = () => {
                 email: response.data.user.email,
                 role: response.data.user.role,
                 auth: response.data.auth,
+                whatsappNumber: response.data.user.whatsappNumber,
+                phoneNumber: response.data.user.phoneNumber,
+                gender: response.data.user.gender,
+                dob: response.data.user.dob,
+                address: response.data.user.address,
+                country: response.data.user.country,
+                city: response.data.user.city,
+                lastInstitute: response.data.user.lastInstitute,
+                degrees: response.data.user.degrees,
+                profile: response.data.user.profile,
               };
             dispatch(setUser(user));
         }

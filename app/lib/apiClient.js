@@ -12,6 +12,7 @@ const api = axios.create({
 // Authentication
 //
 
+// Login
 export const login = async (data) => {
   let response;
   try {
@@ -22,6 +23,7 @@ export const login = async (data) => {
   return response;
 };
 
+// Register New User
 export const register = async (data) => {
   let response;
   try {
@@ -32,6 +34,7 @@ export const register = async (data) => {
   return response;
 };
 
+// Logout
 export const signout = async () => {
   let response;
   try {
@@ -42,7 +45,38 @@ export const signout = async () => {
   return response;
 };
 
+// Update Password
+export const updatePassword = async (data) => {
+  let response;
+  try {
+    response = await api.post("/update-password", data);
+  } catch (error) {
+    return error;
+  }
+  return response;
+};
 
+// Update Profile Details
+export const update = async (data) => {
+  let response;
+  try {
+    response = await api.put("/update", data);
+  } catch (error) {
+    return error;
+  }
+  return response;
+};
+
+// Update Profile Picture
+export const updatePicture = async (data) => {
+  let response;
+  try {
+    response = await api.put("/update-pic", data);
+  } catch (error) {
+    return error;
+  }
+  return response;
+};
 
 
 //

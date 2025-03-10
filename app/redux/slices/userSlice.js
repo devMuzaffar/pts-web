@@ -6,6 +6,7 @@ const initialState = {
   email: "",
   role: "",
   auth: false,
+  profile: "",
 };
 
 const userSlice = createSlice({
@@ -13,13 +14,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      // const { id, email, role, name } = action.payload;
-      // state.id = id;
-      // state.name = name;
-      // state.email = email;
-      // state.role = role;
-
-      // Update / Add only given
+      // Update + Add new fields in State
       Object.assign(state, action.payload);
     },
     removeUser: (state) => {

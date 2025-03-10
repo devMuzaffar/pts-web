@@ -22,6 +22,7 @@ const SelectCountry = ({ country, setCountry, city, setCity }) => {
   // Cities List
   const [cities, setCities] = useState(City.getCitiesOfCountry("PK"));
 
+  // Handle Change Country
   const handleChangeCountry = (e) => {
     const selectedCountry = e.target.value;
     const countryCode = countries.find(
@@ -34,6 +35,7 @@ const SelectCountry = ({ country, setCountry, city, setCity }) => {
     }
   };
 
+  // Handle Change City
   const handleChangeCity = (e) => setCity(e.target.value);
 
   return (

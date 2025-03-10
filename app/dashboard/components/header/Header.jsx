@@ -9,9 +9,15 @@ import { counselorList, profileList } from "./list/dropDownList";
 import { useContext, useState } from "react";
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
 import { useRouter } from "next/navigation";
+import { signout } from "@/app/lib/apiClient";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "@/app/redux/slices/userSlice";
+import Image from "next/image";
 
 const Header = () => {
+  const user = useSelector((state) => state.user);
   const navigate = useRouter();
+  const dispatch = useDispatch();
 
   // Mobile Sidebar Button Context
   const { setIsMobileSidebar } = useContext(SidebarContext);
@@ -57,9 +63,20 @@ const Header = () => {
   };
 
   // Profile Function navigates to other pages on Click
-  const handleProfileNav = (item) => {
+  const handleProfileNav = async (item) => {
     if (item.text === "My Profile") {
       navigate.push("/dashboard/profile");
+    } else if (item.text === "Logout") {
+      // Logs out of Dashboard
+      const response = await signout();
+      if (response.status === 200) {
+        window.location.href = "/";
+        setTimeout(() => {
+          dispatch(removeUser());
+        }, 500);
+      } else {
+        alert(response.message);
+      }
     }
   };
 
@@ -132,7 +149,21 @@ const Header = () => {
           >
             {/* Avatar */}
             <div className="bg-[#bdbdbd] rounded-full w-10 h-10 flex justify-center items-center">
-              <p className="text-xl text-white font-semibold">M</p>
+              {/* Profile Picture */}
+              {user.profile ? (
+                <Image
+                  className="rounded-full"
+                  src={user.profile}
+                  alt="profilepicture"
+                  unoptimized
+                  width={200}
+                  height={200}
+                />
+              ) : (
+                <p className="text-xl text-white font-semibold">
+                  {user.name[0].toUpperCase()}
+                </p>
+              )}
             </div>
           </ButtonBase>
         </div>

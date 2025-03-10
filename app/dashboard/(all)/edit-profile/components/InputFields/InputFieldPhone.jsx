@@ -5,18 +5,24 @@ import countries from "../../list/countries";
 import textFieldStyle from "@/app/dashboard/styles/textFieldStyle";
 import { formatIncompletePhoneNumber } from "libphonenumber-js";
 
-const InputFieldPhone = ({disabled = false, required = false, label}) => {
+const InputFieldPhone = ({disabled = false, required = false, label, value, setValue}) => {
+
+  // List of Countries state
   const [selectedCountry, setSelectedCountry] = useState(
     countries.find((c) => c.code === "PK")
   );
-  const [phoneNumber, setPhoneNumber] = useState(`+${selectedCountry.phone}`);
 
+  // Phone Number State
+  const [phoneNumber, setPhoneNumber] = useState(value || `+${selectedCountry.phone}`);
+
+  // Handle Country Select
   const handleSelectCountry = (event) => {
     const country = countries.find((c) => c.code === event.target.value);
     setSelectedCountry(country);
     setPhoneNumber(`+${country.phone}`);
   };
 
+  // Handle Phone Number
   const handlePhoneNumber = (e) => {
     let text = e.target.value;
     if (/^[0-9+\-\s]*$/.test(text)) {
@@ -29,6 +35,9 @@ const InputFieldPhone = ({disabled = false, required = false, label}) => {
         selectedCountry?.code
       );
       setPhoneNumber(formattedNumber);
+      if(setValue){
+        setValue(phoneNumber);
+      }
     }
   };
 

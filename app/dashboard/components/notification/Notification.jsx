@@ -1,3 +1,7 @@
+// 
+// This Component Shows Mini Notification on Top
+// 
+
 import { IconButton } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { MdClose } from "react-icons/md";

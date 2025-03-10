@@ -1,9 +1,9 @@
-import getMenuList from "@/app/dashboard/list/menuList";
+import getMenuList from "@/dashboard/list/menuList";
 import MenuButton from "../menubutton/MenuButton";
 import SidebarHeader from "../sidebarheader/SidebarHeader";
 import { useContext, useState } from "react";
 import { SidebarContext } from "@/dashboard/context/SidebarContext";
-import useSidebar from "../../hooks/useSidebar";
+import useSidebar from "@/dashboard/hooks/useSidebar";
 
 const SidebarBody = () => {
   const menuList = getMenuList();

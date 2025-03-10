@@ -43,7 +43,6 @@ const SignUp = ({ setIsNewUser }) => {
       role: "user",
     };
     const response = await register(formData);
-    console.log(response)
     if (response.status === 201) {
       const data = {
         id: response.data.user.id,
@@ -56,9 +55,9 @@ const SignUp = ({ setIsNewUser }) => {
       dispatch(setUser(data));
       setIsModalOpen(false);
       router.replace("/dashboard");
-    } else if (response.code === "ERR_BAD_REQUEST") {
+    } else if (response.code === "ERR_BAD_RESPONSE") {
       setLoading(false);
-      alert(response.message);
+      alert(response.response.data.message);
     }
     setLoading(false);
   };
