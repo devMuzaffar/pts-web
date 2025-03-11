@@ -17,12 +17,17 @@ const QuickRoutes = () => {
   const router = useRouter();
 
   const handleRouting = (index) => {
-      switch(index){
-        case 0: router.push('/dashboard/analytics'); break;
-        case 2: router.push('/dashboard/bookmarks'); break;
-        default: break;
-      }
-  }
+    switch (index) {
+      case 0:
+        router.push("/dashboard/analytics");
+        break;
+      case 2:
+        router.push("/dashboard/bookmarks");
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -34,7 +39,14 @@ const QuickRoutes = () => {
           onClick={() => handleRouting(index)}
         >
           <div className="flex flex-col items-center justify-center gap-2">
-            <Image src={item.icon} width={96} height={96} alt="" />
+            <div className="w-24 h-24 relative">
+              <Image
+                src={item.icon}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt=""
+              />
+            </div>
             <p className="text-dark text-2xl font-bold">{item.title}</p>
             {item.phone && (
               <p className="text-sm text-gray-500">{item.phone}</p>

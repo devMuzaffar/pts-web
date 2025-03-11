@@ -39,7 +39,9 @@ const ProfileForm = () => {
   const [country, setCountry] = useState(user.country || "Pakistan");
   const [city, setCity] = useState(user.city || "Karachi");
   const [lastInstitute, setLastInstitute] = useState(user.lastInstitute || "");
-  const [degrees, setDegrees] = useState(user.degrees || []);
+  const [degrees, setDegrees] = useState(
+    user.degrees.length > 0 ? user.degrees : [{ degree: "", percentage: "" }]
+  );
 
   // Validation for Name only
   const { values, errors, touched, handleBlur, handleChange } = useFormik({

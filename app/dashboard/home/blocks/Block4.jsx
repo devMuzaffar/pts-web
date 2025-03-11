@@ -24,8 +24,15 @@ const swiperBreakpoints = {
 const Block4 = () => {
   // Ref hook for Swiper Navigation
   const swiperRef = useRef(null);
-  const [isStart, setIsStart] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
+  const [isLeft, setIsLeft] = useState(false);
+  const [isRight, setIsRight] = useState(true);
+
+  // Handle Slide Change
+  const handleSlideChange = (swiper) => {
+    console.log(swiper.activeIndex);
+    setIsLeft(swiper.activeIndex === 0 ? false : true);
+    setIsRight(swiper.activeIndex === YTLinksID.length ? false : true);
+  };
 
   return (
     <div className={blockStyle}>
@@ -39,10 +46,7 @@ const Block4 = () => {
           breakpoints={swiperBreakpoints}
           spaceBetween={20}
           loop={false}
-          onSlideChange={(swiper) => {
-            setIsStart(swiper.isBeginning);
-            setIsEnd(swiper.isEnd);
-          }}
+          onSlideChange={handleSlideChange}
         >
           {YTLinksID.map((id, index) => (
             <SwiperSlide key={index}>
@@ -51,20 +55,17 @@ const Block4 = () => {
           ))}
         </Swiper>
 
-        {swiperRef && (
+        {true && (
           <div>
-            {isStart && (
+            {isRight && (
               <SlidePrevButton
-                onClick={() => {
-                  swiperRef.current.swiper.slideNext();
-                }}
+                onClick={() => swiperRef.current.swiper.slideNext()}
               />
             )}
-            {isEnd && (
+
+            {isLeft && (
               <SlideNextButton
-                onClick={() => {
-                  swiperRef.current.swiper.slidePrev();
-                }}
+                onClick={() => swiperRef.current.swiper.slidePrev()}
               />
             )}
           </div>

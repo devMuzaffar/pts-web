@@ -90,25 +90,28 @@ export const updatePicture = async (data) => {
 // This method Auto Refreshes Refresh Token when access Token is expired
 // handles errors too
 
-// api.interceptors.response.use(
-//   (config) => config,
-//   async (error) => {
-//     const originalReq = error.config;
-//     const status = error.response.status;
+api.interceptors.response.use(
+  (config) => config,
+  async (error) => {
+    const originalReq = error.config;
+    const status = error.response.status;
 
-//     if (
-//       (status === 401 || status === 500) &&
-//       originalReq &&
-//       !originalReq._isRetry
-//     ) {
-//       originalReq._isRetry = true;
+    if (
+      (status === 401 || status === 500) &&
+      originalReq &&
+      !originalReq._isRetry
+    ) {
+      originalReq._isRetry = true;
 
-//       try {
-//         await axios.get(`${URL}/refresh`, { withCredentials: true });
-//         return api.request(originalReq);
-//       } catch (error) {
-//         return error;
-//       }
-//     }
-//   }
-// );
+      try {
+        await axios.get(`${URL}/refresh`, { withCredentials: true });
+        return api.request(originalReq);
+      } catch (error) {
+        // return error;
+        return Promise.reject(err);
+      }
+    }
+    // 
+    return Promise.reject(error);
+  }
+);
